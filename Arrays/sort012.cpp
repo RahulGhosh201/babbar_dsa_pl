@@ -1,10 +1,16 @@
-// ip: 0,1,0,2,1,0,1,2
-// op: 0,0,0,1,1,1,2,2
-
 #include <bits/stdc++.h>
 using namespace std;
 
-void sort012(int arr[], int n)
+void printArr(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+void ans(int arr[], int n)
 {
     int count0 = 0, count1 = 0, count2 = 0;
     for (int i = 0; i < n; i++)
@@ -13,7 +19,7 @@ void sort012(int arr[], int n)
         {
             count0++;
         }
-        if (arr[i] == 1)
+        else if (arr[i] == 1)
         {
             count1++;
         }
@@ -27,26 +33,25 @@ void sort012(int arr[], int n)
     {
         temp[k++] = 0;
     }
-    for (int i = 0; i < count1; i++)
+    for (int i = count0; i < count0 + count1; i++)
     {
         temp[k++] = 1;
     }
-    for (int i = 0; i < count2; i++)
+    for (int i = count1 + count0; i < count0 + count1 + count2; i++)
     {
         temp[k++] = 2;
     }
-    cout << "Ans: ";
-    for (int i = 0; i < k; i++)
-    {
-        cout << temp[i] << " ";
-    }
-    cout << endl;
+    cout << "After sorting: " << endl;
+    printArr(temp, n);
 }
 
 int main()
 {
-    int arr[] = {0, 1, 0, 2, 1, 0, 1, 2};
+    int arr[] = {0, 1, 2, 1, 2, 0, 1, 1, 0, 2, 2, 1};
     int n = sizeof(arr) / sizeof(arr[0]);
-    sort012(arr, n);
+    cout << "Before sorting: " << endl;
+    printArr(arr, n);
+    ans(arr, n);
+
     return 0;
 }
